@@ -5,13 +5,28 @@ package com.totoro_fly.miwok;
  */
 
 public class Word {
+    private int mImage = NO_IMAGE_PROVIDE;
     private String mEnglish;
     private String mMiwok;
+    private static final int NO_IMAGE_PROVIDE = -1;
 
-    public Word(String english, String miwok) {
+
+    public Word(String mEnglish, String mMiwok) {
+        this.mEnglish = mEnglish;
+        this.mMiwok = mMiwok;
+    }
+
+    public Word(int image, String english, String miwok) {
+        mImage = image;
         mEnglish = english;
         mMiwok = miwok;
     }
+
+
+    public int getmImage() {
+        return mImage;
+    }
+
 
     public String getEnglish() {
         return mEnglish;
@@ -21,5 +36,8 @@ public class Word {
         return mMiwok;
     }
 
+    public boolean hasImage() {
+        return mImage != NO_IMAGE_PROVIDE;
+    }
 
 }

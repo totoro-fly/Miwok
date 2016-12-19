@@ -21,17 +21,17 @@ public class FamilyActivity extends AppCompatActivity {
         setContentView(R.layout.word_list);
         ButterKnife.bind(this);
         ArrayList<Word> family = new ArrayList<Word>();
-        family.add(new Word("father", "epe"));
-        family.add(new Word("mother", "eta"));
-        family.add(new Word("son", "angsi"));
-        family.add(new Word("daughter", "tune"));
-        family.add(new Word("older brother", "taachi"));
-        family.add(new Word("younger brother", "chalitti"));
-        family.add(new Word("older sister", "tete"));
-        family.add(new Word("younger sister", "kolliti"));
-        family.add(new Word("grandmother", "ama"));
-        family.add(new Word("grandfather", "paapa"));
-        WordAdapter wordAdapter = new WordAdapter(this, family);
+        family.add(new Word(R.drawable.family_father,"father", "epe"));
+        family.add(new Word(R.drawable.family_mother,"mother", "eta"));
+        family.add(new Word(R.drawable.family_son,"son", "angsi"));
+        family.add(new Word(R.drawable.family_daughter,"daughter", "tune"));
+        family.add(new Word(R.drawable.family_older_brother,"older brother", "taachi"));
+        family.add(new Word(R.drawable.family_younger_brother,"younger brother", "chalitti"));
+        family.add(new Word(R.drawable.family_older_sister,"older sister", "tete"));
+        family.add(new Word(R.drawable.family_younger_sister,"younger sister", "kolliti"));
+        family.add(new Word(R.drawable.family_grandmother,"grandmother", "ama"));
+        family.add(new Word(R.drawable.family_grandfather,"grandfather", "paapa"));
+        WordAdapter wordAdapter = new WordAdapter(this, family, R.color.family_background);
         wordListView.setAdapter(wordAdapter);
     }
 }
