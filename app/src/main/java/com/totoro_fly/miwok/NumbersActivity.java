@@ -1,5 +1,6 @@
 package com.totoro_fly.miwok;
 
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -21,6 +22,20 @@ public class NumbersActivity extends AppCompatActivity {
     private MediaPlayer.OnCompletionListener mCompletionListener = new MediaPlayer.OnCompletionListener() {
         public void onCompletion(MediaPlayer mediaPlayer) {
             releaseMediaPlayer();
+        }
+    };
+    private AudioManager audioManager;
+    private AudioManager.OnAudioFocusChangeListener mAudioFocusChangeListenter = new AudioManager.OnAudioFocusChangeListener() {
+        @Override
+        public void onAudioFocusChange(int i) {
+            if (i == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT || i == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK) {
+                mediaPlayer.pause();
+                mediaPlayer.seekTo(0);
+            } else if (i == AudioManager.AUDIOFOCUS_GAIN)
+                mediaPlayer.start();
+            else if (i == AudioManager.AUDIOFOCUS_LOSS) {
+                releaseMediaPlayer();
+            }
         }
     };
 
@@ -47,9 +62,12 @@ public class NumbersActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Word numberWord = number.get(i);
                 releaseMediaPlayer();
-                mediaPlayer = MediaPlayer.create(NumbersActivity.this, numberWord.getmMusic());
-                mediaPlayer.start();
-                mediaPlayer.setOnCompletionListener(mCompletionListener);
+                int result = audioManager.requestAudioFocus(mAudioFocusChangeListenter, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
+                if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
+                    mediaPlayer = MediaPlayer.create(NumbersActivity.this, numberWord.getmMusic());
+                    mediaPlayer.start();
+                    mediaPlayer.setOnCompletionListener(mCompletionListener);
+                }
             }
         });
     }
@@ -63,6 +81,7 @@ public class NumbersActivity extends AppCompatActivity {
         if (mediaPlayer != null) {
             mediaPlayer.release();
             mediaPlayer = null;
+            audioManager.abandonAudioFocus(mAudioFocusChangeListenter);
         }
     }
 }

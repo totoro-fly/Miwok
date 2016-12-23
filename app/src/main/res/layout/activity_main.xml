@@ -8,27 +8,56 @@
     android:orientation="vertical"
     tools:context="com.totoro_fly.miwok.MainActivity">
 
-    <TextView
-        android:id="@+id/numbers_text_view"
-        style="@style/TextViewStyle"
-        android:text="@string/activity_main_numbers"/>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@android:color/holo_orange_dark"
+        >
 
-    <TextView
-        android:id="@+id/family_text_view"
-        style="@style/TextViewStyle"
+        <TextView
+            android:id="@+id/numbers_text_view"
+            style="@style/TextViewStyle"
+            android:background="?android:attr/selectableItemBackground"
+            android:text="@string/activity_main_numbers"/>
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
         android:background="@android:color/holo_blue_light"
-        android:text="@string/activity_main_family"/>
+        >
 
-    <TextView
-        android:id="@+id/colors_text_view"
-        style="@style/TextViewStyle"
+        <TextView
+            android:id="@+id/family_text_view"
+            style="@style/TextViewStyle"
+            android:background="?android:attr/selectableItemBackground"
+            android:text="@string/activity_main_family"/>
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
         android:background="@android:color/holo_green_light"
-        android:text="@string/activity_main_colors"/>
+        >
 
-    <TextView
-        android:id="@+id/phrases_text_view"
-        style="@style/TextViewStyle"
+        <TextView
+            android:id="@+id/colors_text_view"
+            style="@style/TextViewStyle"
+            android:background="?android:attr/selectableItemBackground"
+            android:text="@string/activity_main_colors"/>
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
         android:background="@android:color/holo_purple"
-        android:text="@string/activity_main_phrases"/>
+        >
 
+        <TextView
+            android:id="@+id/phrases_text_view"
+            style="@style/TextViewStyle"
+            android:background="?android:attr/selectableItemBackground"
+            android:text="@string/activity_main_phrases"/>
+    </FrameLayout>
 </LinearLayout>

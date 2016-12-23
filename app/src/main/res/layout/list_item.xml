@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="@color/list_background"
-              android:minHeight="@dimen/list_item_height"
-              android:orientation="horizontal">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="88dp"
+                android:background="@color/list_background">
 
 
     <ImageView
@@ -19,6 +17,7 @@
         android:id="@+id/list_item_background_linearlayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_toRightOf="@id/image_image_view"
         android:orientation="vertical"
         android:paddingLeft="16dp"
         tools:background="@android:color/holo_orange_dark">
@@ -45,4 +44,14 @@
             android:textColor="@android:color/white"
             tools:text="translation"/>
     </LinearLayout>
-</LinearLayout>
+
+    <ImageView
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="16dp"
+        android:src="@drawable/ic_play_arrow_white_36dp"
+
+        />
+</RelativeLayout>
