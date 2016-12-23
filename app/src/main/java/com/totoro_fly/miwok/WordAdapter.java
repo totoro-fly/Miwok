@@ -24,7 +24,7 @@ public class WordAdapter extends ArrayAdapter<Word> {
         super(context, 0, word);
         mListBackground=listBackground;
     }
-
+    
 
     @NonNull
     @Override

@@ -19,9 +19,9 @@
         android:id="@+id/list_item_background_linearlayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:background="@android:color/holo_orange_dark"
         android:orientation="vertical"
-        android:paddingLeft="16dp">
+        android:paddingLeft="16dp"
+        tools:background="@android:color/holo_orange_dark">
 
         <TextView
             android:id="@+id/miwok_text_view"
@@ -45,5 +45,4 @@
             android:textColor="@android:color/white"
             tools:text="translation"/>
     </LinearLayout>
-
 </LinearLayout>

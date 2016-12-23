@@ -3,6 +3,7 @@ package com.totoro_fly.miwok;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -54,5 +55,35 @@ public class MainActivity extends AppCompatActivity {
             case R.id.activity_main:
                 break;
         }
+    }
+
+    @Override
+    protected void onStart() {
+        Log.d(MainActivity.class.getName(),"start");
+        super.onStart();
+    }
+
+    @Override
+    protected void onResume() {
+        Log.d(MainActivity.class.getName(),"resume");
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        Log.d(MainActivity.class.getName(),"pause");
+        super.onPause();
+    }
+
+    @Override
+    protected void onStop() {
+        Log.d(MainActivity.class.getName(),"stop");
+        super.onStop();
+    }
+
+    @Override
+    protected void onDestroy() {
+        Log.d(MainActivity.class.getName(),"destroy");
+        super.onDestroy();
     }
 }
