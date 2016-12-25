@@ -24,7 +24,7 @@ public class NumbersActivity extends AppCompatActivity {
             releaseMediaPlayer();
         }
     };
-    private AudioManager audioManager;
+    AudioManager audioManager;
     private AudioManager.OnAudioFocusChangeListener mAudioFocusChangeListenter = new AudioManager.OnAudioFocusChangeListener() {
         @Override
         public void onAudioFocusChange(int i) {
@@ -44,6 +44,7 @@ public class NumbersActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.word_list);
         ButterKnife.bind(this);
+        audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
         final ArrayList<Word> number = new ArrayList<Word>();
         number.add(new Word(R.drawable.number_one, "one", "lutti", R.raw.number_one));
         number.add(new Word(R.drawable.number_two, "two", "otiiko", R.raw.number_two));
