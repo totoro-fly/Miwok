@@ -1,63 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
     android:orientation="vertical"
     tools:context="com.totoro_fly.miwok.MainActivity">
 
-    <FrameLayout
+    <android.support.design.widget.TabLayout
+        android:id="@+id/title_tabview"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="@android:color/holo_orange_dark"
-        >
+        android:layout_height="wrap_content"
+        app:tabIndicatorColor="@android:color/white"
+        app:tabSelectedTextColor="@android:color/white"
+        app:tabTextColor="#a8a19e"/>
 
-        <TextView
-            android:id="@+id/numbers_text_view"
-            style="@style/TextViewStyle"
-            android:background="?android:attr/selectableItemBackground"
-            android:text="@string/activity_main_numbers"/>
-    </FrameLayout>
-
-    <FrameLayout
+    <android.support.v4.view.ViewPager
+        android:id="@+id/view_pager"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="@android:color/holo_blue_light"
-        >
+        android:layout_height="match_parent"/>
 
-        <TextView
-            android:id="@+id/family_text_view"
-            style="@style/TextViewStyle"
-            android:background="?android:attr/selectableItemBackground"
-            android:text="@string/activity_main_family"/>
+    <!--<FrameLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="60dp"-->
+    <!--android:background="@android:color/holo_orange_dark"-->
+    <!--&gt;-->
 
-    </FrameLayout>
+    <!--<TextView-->
+    <!--android:id="@+id/numbers_text_view"-->
+    <!--style="@style/TextViewStyle"-->
+    <!--android:background="?android:attr/selectableItemBackground"-->
+    <!--android:text="@string/activity_main_numbers"/>-->
+    <!--</FrameLayout>-->
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="@android:color/holo_green_light"
-        >
+    <!--<FrameLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="60dp"-->
+    <!--android:background="@android:color/holo_blue_light"-->
+    <!--&gt;-->
 
-        <TextView
-            android:id="@+id/colors_text_view"
-            style="@style/TextViewStyle"
-            android:background="?android:attr/selectableItemBackground"
-            android:text="@string/activity_main_colors"/>
-    </FrameLayout>
+    <!--<TextView-->
+    <!--android:id="@+id/family_text_view"-->
+    <!--style="@style/TextViewStyle"-->
+    <!--android:background="?android:attr/selectableItemBackground"-->
+    <!--android:text="@string/activity_main_family"/>-->
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="@android:color/holo_purple"
-        >
+    <!--</FrameLayout>-->
 
-        <TextView
-            android:id="@+id/phrases_text_view"
-            style="@style/TextViewStyle"
-            android:background="?android:attr/selectableItemBackground"
-            android:text="@string/activity_main_phrases"/>
-    </FrameLayout>
+    <!--<FrameLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="60dp"-->
+    <!--android:background="@android:color/holo_green_light"-->
+    <!--&gt;-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/colors_text_view"-->
+    <!--style="@style/TextViewStyle"-->
+    <!--android:background="?android:attr/selectableItemBackground"-->
+    <!--android:text="@string/activity_main_colors"/>-->
+    <!--</FrameLayout>-->
+
+    <!--<FrameLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="60dp"-->
+    <!--android:background="@android:color/holo_purple"-->
+    <!--&gt;-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/phrases_text_view"-->
+    <!--style="@style/TextViewStyle"-->
+    <!--android:background="?android:attr/selectableItemBackground"-->
+    <!--android:text="@string/activity_main_phrases"/>-->
+    <!--</FrameLayout>-->
 </LinearLayout>

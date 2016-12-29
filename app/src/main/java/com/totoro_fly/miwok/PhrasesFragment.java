@@ -23,34 +23,38 @@ import static android.content.Context.AUDIO_SERVICE;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link OnFragmentInteractionListener} interface
+ * {@link PhrasesFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link NumberFragment#newInstance} factory method to
+ * Use the {@link PhrasesFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class NumberFragment extends Fragment {
+public class PhrasesFragment extends Fragment {
+
     @Bind(R.id.word_list_view)
     ListView wordListView;
     MediaPlayer mediaPlayer;
-    private MediaPlayer.OnCompletionListener mCompletionListener = new MediaPlayer.OnCompletionListener() {
+    private MediaPlayer.OnCompletionListener mCompletionListener = new MediaPlayer.OnCompletionListener()
+
+    {
         public void onCompletion(MediaPlayer mediaPlayer) {
             releaseMediaPlayer();
         }
     };
     AudioManager audioManager;
-    private AudioManager.OnAudioFocusChangeListener mAudioFocusChangeListenter = new AudioManager.OnAudioFocusChangeListener() {
+    AudioManager.OnAudioFocusChangeListener audioFocusChangeListener = new AudioManager.OnAudioFocusChangeListener() {
         @Override
         public void onAudioFocusChange(int i) {
             if (i == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT || i == AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK) {
                 mediaPlayer.pause();
                 mediaPlayer.seekTo(0);
-            } else if (i == AudioManager.AUDIOFOCUS_GAIN)
+            } else if (i == AudioManager.AUDIOFOCUS_GAIN) {
                 mediaPlayer.start();
-            else if (i == AudioManager.AUDIOFOCUS_LOSS) {
+            } else if (i == AudioManager.AUDIOFOCUS_LOSS) {
                 releaseMediaPlayer();
             }
         }
     };
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -63,7 +67,7 @@ public class NumberFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public NumberFragment() {
+    public PhrasesFragment() {
         // Required empty public constructor
     }
 
@@ -73,11 +77,11 @@ public class NumberFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment NumberFragment.
+     * @return A new instance of fragment PhrasesFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static NumberFragment newInstance(String param1, String param2) {
-        NumberFragment fragment = new NumberFragment();
+    public static PhrasesFragment newInstance(String param1, String param2) {
+        PhrasesFragment fragment = new PhrasesFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -97,37 +101,36 @@ public class NumberFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.word_list, container, false);
         ButterKnife.bind(this, view);
         audioManager = (AudioManager) getActivity().getSystemService(AUDIO_SERVICE);
-        final ArrayList<Word> number = new ArrayList<Word>();
-        number.add(new Word(R.drawable.number_one, "one", "lutti", R.raw.number_one));
-        number.add(new Word(R.drawable.number_two, "two", "otiiko", R.raw.number_two));
-        number.add(new Word(R.drawable.number_three, "three", "tolookosu", R.raw.number_three));
-        number.add(new Word(R.drawable.number_four, "four", "oyylsa", R.raw.number_four));
-        number.add(new Word(R.drawable.number_five, "five", "massokka", R.raw.number_five));
-        number.add(new Word(R.drawable.number_six, "six", "temmokka", R.raw.number_six));
-        number.add(new Word(R.drawable.number_seven, "seven", "kenekaku", R.raw.number_seven));
-        number.add(new Word(R.drawable.number_eight, "eight", "kawinta", R.raw.number_eight));
-        number.add(new Word(R.drawable.number_nine, "nine", "wo e", R.raw.number_nine));
-        number.add(new Word(R.drawable.number_ten, "ten", "na aacha", R.raw.number_ten));
-        WordAdapter itemsAdapter = new WordAdapter(getActivity(), number, R.color.number_background);
-        wordListView.setAdapter(itemsAdapter);
+        final ArrayList<Word> phrases = new ArrayList<Word>();
+        phrases.add(new Word("Where are you going?", "minto wuksus", R.raw.phrase_where_are_you_going));
+        phrases.add(new Word("What is your name?", "tinne oyaase'ne", R.raw.phrase_what_is_your_name));
+        phrases.add(new Word("My name is...", "oyaaset", R.raw.phrase_my_name_is));
+        phrases.add(new Word("How are you feeling?", "michekses", R.raw.phrase_how_are_you_feeling));
+        phrases.add(new Word("I'm feeling good.", "kuchi achit", R.raw.phrase_im_feeling_good));
+        phrases.add(new Word("Are you coming?", "eenes'aa?", R.raw.phrase_are_you_coming));
+        phrases.add(new Word("Yes,I'm coming.", "hee'eenem", R.raw.phrase_im_coming));
+        phrases.add(new Word("I'm coming.", "eenem", R.raw.phrase_yes_im_coming));
+        phrases.add(new Word("Let's go.", "yoowutis", R.raw.phrase_lets_go));
+        phrases.add(new Word("Come here", "anni'nem", R.raw.phrase_come_here));
+        WordAdapter wordAdapter = new WordAdapter(getActivity(), phrases, R.color.phrases_background);
+        wordListView.setAdapter(wordAdapter);
         wordListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Word numberWord = number.get(i);
+                Word phrasesWord = phrases.get(i);
                 releaseMediaPlayer();
-                int result = audioManager.requestAudioFocus(mAudioFocusChangeListenter, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
+                int result = audioManager.requestAudioFocus(audioFocusChangeListener, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
                 if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
-                    mediaPlayer = MediaPlayer.create(getActivity(), numberWord.getmMusic());
+                    mediaPlayer = MediaPlayer.create(getActivity(), phrasesWord.getmMusic());
                     mediaPlayer.start();
                     mediaPlayer.setOnCompletionListener(mCompletionListener);
                 }
             }
         });
-
+        // Inflate the layout for this fragment
         return view;
     }
 
@@ -155,12 +158,6 @@ public class NumberFragment extends Fragment {
         mListener = null;
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        ButterKnife.unbind(this);
-    }
-
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -176,7 +173,6 @@ public class NumberFragment extends Fragment {
         void onFragmentInteraction(Uri uri);
     }
 
-    @Override
     public void onStop() {
         super.onStop();
         releaseMediaPlayer();
@@ -186,7 +182,7 @@ public class NumberFragment extends Fragment {
         if (mediaPlayer != null) {
             mediaPlayer.release();
             mediaPlayer = null;
-            audioManager.abandonAudioFocus(mAudioFocusChangeListenter);
+            audioManager.abandonAudioFocus(audioFocusChangeListener);
         }
     }
 }
